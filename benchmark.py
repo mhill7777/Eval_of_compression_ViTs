@@ -24,7 +24,7 @@ TIMESTAMP_ID = datetime.now().strftime("%Y%m%d_%H%M%S")
 CONFIG = {
     'IMAGE_SIZE': 224,
     'BATCH_SIZE': 64,      
-    'DATASET_DIR': '/media/jetson/0118dae2-db05-4ad8-b86a-2bad3355fc8e/helal_eccv/hdatap/imagenet_full_val',
+    'DATASET_DIR': #add where your validation datset is example  '/imagenet_full_val',
     'SUMMARY_CSV': f'./results/benchmark_summary_{TIMESTAMP_ID}.csv',  
     'NUM_RUNS': 1,          
     'JTOP_INTERVAL': 0.015,
@@ -39,7 +39,7 @@ def load_deit():
 
 
 def load_dynamicvit():
-    DYNAMICVIT_ROOT = '/home/jetson/reu2026/hdatap/models/DynamicViT'
+    DYNAMICVIT_ROOT = '/models/DynamicViT'
     if DYNAMICVIT_ROOT not in sys.path:
             sys.path.insert(0, DYNAMICVIT_ROOT)
             
@@ -80,7 +80,7 @@ def load_dynamicvit():
 def load_aphq_deit_small():
     print("-> Instantiating APHQ-ViT Quantized DeiT-S (W4/A4)...")
    
-    APHQ_ROOT = '/home/jetson/reu2026/hdatap/models/APHQ-ViT'
+    APHQ_ROOT = '/models/APHQ-ViT'
    
     if not os.path.exists(APHQ_ROOT):
         raise FileNotFoundError(f"[FATAL] The path {APHQ_ROOT} does not exist.")
@@ -196,7 +196,7 @@ def load_vitkd():
     model.cuda()
     model.eval()
     return model
-
+#you can add more if needed, but will also have to write a loader function
 MODELS_REGISTRY = [
     {
         "name": "DeiT-S",
